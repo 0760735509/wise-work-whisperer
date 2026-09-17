@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { CalendarClock, FileText, Mail } from "lucide-react";
+import { CalendarClock, FileText, Mail, Sparkles } from "lucide-react";
 
 import { EmailGenerator } from "@/components/EmailGenerator";
 import { MeetingSummarizer } from "@/components/MeetingSummarizer";
@@ -36,43 +36,62 @@ const MODULES = [
 
 function Index() {
   return (
-    <main className="min-h-screen">
-      <header className="bg-hero text-surface-foreground">
-        <div className="mx-auto max-w-6xl px-6 py-16">
-          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-surface-foreground/70">
-            Intelligent workplace assistant
-          </p>
-          <h1 className="mt-4 max-w-2xl text-4xl font-bold leading-tight sm:text-5xl">
-            Turn scattered work into finished output.
-          </h1>
-          <p className="mt-4 max-w-xl text-base text-surface-foreground/80">
-            Three focused tools: draft the email, turn a transcript into owned action items, and
-            block out a day that actually fits.
-          </p>
-        </div>
-      </header>
+    <main className="min-h-screen bg-background px-4 py-4 sm:px-6 sm:py-8 lg:px-8 lg:py-10">
+      <div className="mx-auto max-w-7xl overflow-hidden rounded-xl border border-border bg-card shadow-lift">
+        <header className="bg-hero px-6 py-9 text-surface-foreground sm:px-10 sm:py-11 lg:px-12">
+          <div className="flex items-start justify-between gap-8">
+            <div>
+              <div className="mb-5 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-surface-foreground/75">
+                <span className="flex size-7 items-center justify-center rounded-md border border-surface-foreground/20 bg-surface-foreground/10">
+                  <Sparkles className="size-3.5" />
+                </span>
+                Workday AI
+              </div>
+              <h1 className="max-w-2xl text-3xl font-semibold leading-tight sm:text-4xl">
+                Intelligent Workplace Assistant
+              </h1>
+              <p className="mt-3 max-w-2xl text-base leading-relaxed text-surface-foreground/78 sm:text-lg">
+                Draft polished emails, distill meeting decisions, and turn priorities into a clear plan.
+              </p>
+            </div>
+            <div className="hidden items-center gap-2 rounded-md border border-surface-foreground/15 bg-surface-foreground/8 px-3 py-2 text-xs font-medium text-surface-foreground/75 md:flex">
+              <span className="size-1.5 rounded-full bg-highlight" />
+              Ready to assist
+            </div>
+          </div>
+        </header>
 
-      <div className="mx-auto max-w-6xl px-6 py-10">
-        <Tabs defaultValue="email" className="space-y-8">
-          <TabsList className="h-auto w-full justify-start gap-1 p-1 sm:w-auto">
+        <Tabs defaultValue="email">
+          <div className="border-b border-border bg-card px-3 py-3 sm:px-8">
+            <TabsList className="h-auto w-full justify-start gap-1 rounded-none bg-transparent p-0 sm:w-auto">
             {MODULES.map(({ value, label, icon: Icon }) => (
-              <TabsTrigger key={value} value={value} className="gap-2 px-4 py-2">
+              <TabsTrigger
+                key={value}
+                value={value}
+                className="min-h-10 flex-1 gap-2 rounded-md px-3 py-2.5 text-xs data-[state=active]:bg-accent data-[state=active]:text-accent-foreground data-[state=active]:shadow-none sm:flex-none sm:px-4 sm:text-sm"
+              >
                 <Icon className="size-4" />
                 {label}
               </TabsTrigger>
             ))}
-          </TabsList>
+            </TabsList>
+          </div>
 
-          <TabsContent value="email">
+          <TabsContent value="email" className="m-0">
             <EmailGenerator />
           </TabsContent>
-          <TabsContent value="meeting">
+          <TabsContent value="meeting" className="m-0">
             <MeetingSummarizer />
           </TabsContent>
-          <TabsContent value="planner">
+          <TabsContent value="planner" className="m-0">
             <TaskPlanner />
           </TabsContent>
         </Tabs>
+
+        <footer className="flex flex-col gap-1 border-t border-border bg-muted/35 px-6 py-3 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between sm:px-8">
+          <span>Three focused tools. One clear workspace.</span>
+          <span>Workday Intelligent Assistant</span>
+        </footer>
       </div>
     </main>
   );
