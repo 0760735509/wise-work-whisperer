@@ -45,7 +45,7 @@ function asPlainText(result: PlannerOutput) {
 
 export function TaskPlanner() {
   const [tasks, setTasks] = useState("");
-  const [horizon, setHorizon] = useState(HORIZONS[0]);
+  const [horizon, setHorizon] = useState<string>("Today");
   const [hoursPerDay, setHoursPerDay] = useState(6);
   const [result, setResult] = useState<PlannerOutput | null>(null);
 

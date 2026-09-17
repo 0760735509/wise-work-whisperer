@@ -25,8 +25,8 @@ const LENGTHS = ["Short (under 100 words)", "Standard (150-200 words)", "Detaile
 export function EmailGenerator() {
   const [intent, setIntent] = useState("");
   const [audience, setAudience] = useState("");
-  const [tone, setTone] = useState(TONES[0]);
-  const [length, setLength] = useState(LENGTHS[1]);
+  const [tone, setTone] = useState<string>("Professional");
+  const [length, setLength] = useState<string>("Standard (150-200 words)");
   const [result, setResult] = useState<EmailOutput | null>(null);
 
   const run = useServerFn(generateEmail);
